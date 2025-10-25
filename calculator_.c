@@ -5,13 +5,14 @@ int sub(int, int);
 int prod(int, int);
 float div(float, float);
 int expo(int);
+int fact(int);
 
 int main(){
     
     int repeat = 1;
     do{
         int choice, a, b;
-        printf("\nA simple Maths calculator. Choose any one option:\n1. Addition \n2. Subtraction \n3. Product \n4. Division \n5. Exponential ");
+        printf("\nA simple Maths calculator. Choose any one option:\n1. Addition \n2. Subtraction \n3. Product \n4. Division \n5. Exponential \n6. Factorial ");
         scanf("%d", &choice);
 
         switch (choice) {
@@ -50,7 +51,15 @@ int main(){
                 printf("\nEnter Number: ");
                 scanf("%d", &a);
                 printf("\nResult of Exponential: %d", expo(a));
+            case 6 :
+                printf("\nEnter Number: ");
+                scanf("%d", &a);
+                printf("\nResult of Factorial: %d", fact(a));
+
+
+
             }
+
             printf("\n\nDo you want to Do again???. 0 for YES and 1 for NO - ");
             scanf("%d", &repeat);
 
@@ -74,4 +83,10 @@ float div(float x, float y){
 }
 int expo(int x){
     return x * x;
+}
+int fact(int x){
+    if (x == 0 || x == 1)
+        return 1;   
+    else
+        return x * fact(x - 1);
 }
