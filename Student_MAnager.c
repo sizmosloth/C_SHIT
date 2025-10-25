@@ -2,12 +2,13 @@
 
 int main() {
     int choice, numStudents = 0;
-    char names[50][50];   // max 50 students, name max 49 chars
-    int marks[50][5];     // 5 subjects per student
-    int total[50];        // total marks per student
+    char names[500][50];   
+    int marks[500][5];     
+    int total[500];        
+    int percent[500];
 
     do {
-        printf("\nMenu:\n1. Add Student\n2. Submit Marks\n3. Show Total Marks\nChoice: ");
+        printf("\nMenu:\n1. Add Student\n2. Submit Marks\n3. Show Total Marks\n4. Percentage \nChoice: ");
         scanf("%d", &choice);
 
         switch(choice) {
@@ -18,7 +19,7 @@ int main() {
                 for(int i = 0; i < n; i++) {
                     printf("Enter name of student %d: ", numStudents + 1);
                     scanf("%s", names[numStudents]);
-                    total[numStudents] = 0; // initialize total
+                    total[numStudents] = 0; 
                     numStudents++;
                 }
                 break;
@@ -28,10 +29,11 @@ int main() {
                 int s;
                 printf("Enter student number (1 to %d): ", numStudents);
                 scanf("%d", &s);
-                s--; // array index
-                printf("Enter marks of 5 subjects for %s: ", names[s]);
+                s--; 
+
                 total[s] = 0;
                 for(int i = 0; i < 5; i++) {
+                    printf("Enter marks of subject %d for %s: ",i + 1, names[s]);
                     scanf("%d", &marks[s][i]);
                     total[s] += marks[s][i];
                 }
@@ -42,6 +44,16 @@ int main() {
                 printf("\nStudent\tTotal Marks\n");
                 for(int i = 0; i < numStudents; i++)
                     printf("%s\t%d\n", names[i], total[i]);
+                break;
+            }
+            case 4: {
+                for(int i = 0; i < numStudents; i++){
+                    percent[i] = (total[i]*100)/500;
+                }
+                printf("\nStudent\tPercentage\n");
+                for(int i = 0; i < numStudents; i++){
+                    printf("%s\t%d\n", names[i], percent[i]);
+                }
                 break;
             }
 
