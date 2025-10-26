@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <string.h>
 
 int main() {
+
     int choice, numStudents = 0;
     char names[500][50];   
     int marks[500][5];     
@@ -8,7 +10,7 @@ int main() {
     int percent[500];
 
     do {
-        printf("\nMenu:\n1. Add Student\n2. Submit Marks\n3. Show Total Marks\n4. Percentage \nChoice: ");
+        printf("\nMenu:\n1. Add Student\n2. Submit Marks\n3. Show Total Marks\n4. Percentage \n5. Student Search \nChoice: ");
         scanf("%d", &choice);
 
         switch(choice) {
@@ -54,6 +56,24 @@ int main() {
                 for(int i = 0; i < numStudents; i++){
                     printf("%s\t%d\n", names[i], percent[i]);
                 }
+                break;
+            }
+            case 5: {
+                char sname[50];
+                int found = 0;
+                printf("Enter Student name to search: ");
+                scanf("%s", sname);
+                for(int i = 0; i < numStudents; i++){
+                    if(strcmp(names[i], sname) == 0){
+                        printf("Details of the Student: ");
+                        for(int j = 0; j < 5; j++){
+                            printf("Marks of Subject %d = %d\n", j + 1, marks[i][j]);
+                        }
+                        printf("Total = %d \nPercentage = %d", total[i], percent[i]);
+                        found = 1;
+                    }
+                }
+                if (found != 1) printf("Student not found!!!");
                 break;
             }
 
